@@ -1,0 +1,26 @@
+version: 2
+services:
+  blackwake:
+    image: blackwake
+    container_name: blackwake
+    restart: unless-stopped
+    ports:
+      - 25001:25001/udp
+      - 26915:26915/udp
+      - 27015:27015/udp
+    volumes:
+      - /var/lib/blackwake/admins.txt:/blackwake/Admin.txt:ro
+      - /var/lib/blackwake/banner.jpg:/blackwake/Banner.jpg:ro
+      - /var/lib/blackwake/bans.txt:/blackwake/Bans.txt
+      - /var/lib/blackwake/leaderboard.txt:/blackwake/CaptainLeaderboard.txt
+      - /var/lib/blackwake/mods.txt:/blackwake/Mod.txt
+      - /var/lib/blackwake/server.cfg:/blackwake/Server.cfg:ro
+      - /var/lib/blackwake/announcements.txt:/blackwake/ServerAnnouncements.txt:ro
+      - /var/lib/blackwake/motd.txt:/blackwake/ServerMessage.txt:ro
+    read_only: true
+    tmpfs:
+      - /blackwake/appcache
+      - /blackwake/config
+      - /blackwake/logs
+      - /root
+      - /tmp
